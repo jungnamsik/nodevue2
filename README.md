@@ -1,7 +1,7 @@
 # nodevue2
 
 # 초기화
-git init
+npm install
 
 # 시작
 node index.js
