@@ -73,6 +73,7 @@ io.sockets.on('connection', (socket, opt) =>{
                 fn();
         });
     });
+    
 
     socket.on('rooms', (fn)=>{
         util.log('rooms=>', socket.rooms)
@@ -112,15 +113,16 @@ io.sockets.on('connection', (socket, opt) =>{
 });
 
 app.get("/eventpush/:val", (req, res)=>{
-    let ret = "{'a':'123','b':'abc'}";
-    res.json(ret);
+    let param = req.params.val ;
     let q = req.query.aa;
+    let ret = "{'param':'"+ param +"','aa':'"+q+"'}";
+    res.json(ret);
+
     let data = {};
-    data.msg = req.params.val + ":" + q;
+    data.msg = param + ":" + q;
     util.log('data>>',data);
 
     io.sockets.emit('message', data) ;
-
 });
 
 /*
